@@ -1,3 +1,42 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // 獲取登入表單提交的資料
+    $phone = $_POST['phone'];
+    $password1 = $_POST['password1'];
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "bar";
+
+    // 建立與資料庫的連接
+    $conn = new mysqli($servername, $username, $password, $database);
+
+    // 檢查連接是否成功
+    if ($conn->connect_error) {
+        die("連接失敗: " . $conn->connect_error);
+    }
+
+    // 執行登入的SQL語句
+    $sql = "SELECT * FROM `user` WHERE `account`   = '$phone' AND `password` = '$password1'";
+
+    $result = $conn->query($sql);
+
+    $query = "SELECT `user_id` FROM `user` WHERE `account`   = '$phone' AND `password` = '$password1'";
+    $result = $conn->query($query);
+    
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $userID = $row['user_id'];
+    } else {
+        $userID = ""; // 如果未找到匹配的结果，可以设置一个默认值或采取其他适当的操作
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,97 +56,85 @@
 
     <style>
         body {
-            background-color: gray;
-            color: black;
+            background-image: url("bar.png");
+            background-size: 100% auto; 
+            color: white;
             margin: 0;
             padding: 0;
         }
 
         .container {
             position: absolute;
-            top: 40%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 50vh;
         }
 
         .form input {
             padding: 5px;
-            width: 200px;
+            width: 220px;
             margin-bottom: 10px;
             color: black;
             background-color: white;
             border: none;
             border-radius: 3px;
         }
-
-        .form .dropdown {
-            margin-bottom: 20px;
-        }
-
-        .form .dropdown .btn {
-            color: black;
-            background-color: white;
-            border: none;
-            display: block;
-        }
-
+        
         .form .login-button,
         .form .register-button {
             margin-top: 10px;
-            background-color: black;
-            color: white;
-            padding: 8px 16px;
+            background-color: white;
+            color: black;
             border: none;
             cursor: pointer;
         }
 
-        .circle {
-            width: 100px;
-            height: 100px;
-            border: 5px solid white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 48px;
-            color: white;
-            margin-bottom: 20px;
+        .form input[type="text"]:focus, .form input[type="password"]:focus{
+        border-color: #2ecc71;
+        width: 280px;
+        transition: 0.5s;
         }
-        .navbar-brand {
-            padding: 0 10px;
-            font-size: 30px;
-        }
-
+                
     </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand mb-0 h1"><b>BAR HOPPER</b></a>
-        </div>
-    </nav>
     <div class="container">
-        <div class="circle"><div class="letter"><b>B</b></div></div>
+        <div class="letter" style="font-size: 75px; margin-bottom: 50px;" ><b>BAR HOPPER</b></div>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <div class="form">
-            <div class="dropdown">
-                <select id="login">
-                    <option value="">請選擇登入方式</option>
-                </select>
-            </div>
-            <input type="text" id="account" placeholder="輸入帳號">
+            <label for="text">帳號：</label>
+            <input type="text" name="phone" required placeholder="輸入帳號" style="font-size: 20px;">
             <br>
-            <input type="password" id="password" placeholder="輸入密碼">
+            <label for="password">密碼：</label>
+            <input type="password" name="password1" required placeholder="輸入密碼" style="font-size: 20px;">
             <br>
-            <button class="login-button">登入</button>
+            <input type="submit" name="login" value="登錄" /></br>
             <br>
-            <button class="register-button" onclick="window.location.href='register.html'">註冊</button>
+            <a href="register.php">註冊</a>
+            <a href="admin.php">管理者登入</a>
+
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+            if ($result->num_rows > 0) {
+            // 登入成功，儲存使用者ID至Session
+            $row = $result->fetch_assoc();
+            $_SESSION['user_id'] = $userID;
+            $_SESSION['user_name'] = $row['user_name'];
+            $_SESSION['permission'] = 'B';
+            
+            header("Location:Bar_search.php?cid=$userID&rid=$userID"); // 登入後導向首頁
+            exit();
+          } else {
+            echo '<p>登入失敗，請檢查帳號和密碼。</p>';
+          }
+          }
+          ?>
+
         </div>
     </div>
 </body>
+
 </html>
