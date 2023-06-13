@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAR HOPPER</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .bar-name {
+            position: absolute;
+            top: 35%;
+            left: calc(50% - 40ch); /* 20ch represents 20 characters width */
+            transform: translate(-50%, -50%) scale(2);
+        }
+        
+        .rating {
+            position: absolute;
+            top: 35%;
+            left: calc(50% + 30ch); /* 20ch represents 20 characters width */
+            transform: translate(-50%, -50%) scale(2);
+        }
+        
+        .image-container {
+          position: absolute;
+            top: calc(35% + 50px); /* 50px represents the height of the image container */
+            left: calc(50% - 65ch); /* 100px represents half the width of the image container */
+            width: 480px;
+            height: 360px;
+            background-color: #ccc; /* Placeholder background color */
+            overflow: hidden; /* Ensure the image is contained within the container */
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintain the aspect ratio and cover the container */
+        }
+        .business-hours {
+            position: absolute;
+            top: 60%;
+            left: calc(50% + 30ch); /* 60px represents half the width of the business hours container */
+            transform: translate(-50%, -50%);
+            border: 2px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .business-hours-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .business-hours-content p {
+            margin: 0;
+        }
+
+        .bar-address {
+            position: absolute;
+            top: 90%;
+            left: calc(50% + 30ch); /* 20ch represents 20 characters width */
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .accordion {
+            position: absolute;
+            top: 110%;
+            left: calc(50% - 40ch);
+            transform: translate(-20%, -20%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+    </style>
+    
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">BAR HOPPER</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BAR HOPPER</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">用戶姓名</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">找BAR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">我的紀錄</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <form class="d-flex mt-3" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+    </nav>
+    
+    <div class="bar-name">BAR NAME</div>
+    <div class="rating">5.0☆</div>
+    <div class="image-container">
+        <img src="渣男.jpg" alt="Image">
+    </div>
+    <div class="business-hours">
+      <div class="business-hours-title">營業時間</div>
+      <div class="business-hours-content">
+        <p>週一  12:00~24:00</p>
+        <p>週二  12:00~24:00</p>
+        <p>週三  12:00~24:00</p>
+        <p>週四  12:00~24:00</p>
+        <p>週五  12:00~24:00</p>
+        <p>週六  12:00~24:00</p>
+        <p>週日  12:00~24:00</p>
+      </div>
+
+    </div>
+    <div class="bar-address">110台北市信義區信義路五段150巷315弄12號</div>
+    <div class="accordion" id="accordion">
+      <h2>第 1 列標題</h2>
+      <div id="row1">第 1 列內容</div>
+      <h2>第 2 列標題</h2>
+      <div id="row2">第 2 列內容</div>
+      <h2>第 3 列標題</h2>
+      <div id="row3">第 3 列內容</div>
+      <h2>第 4 列標題</h2>
+      <div id="row4">第 4 列內容</div>
+    </div>
+    
+    
+    <script>
+      $(function(){
+        $("#accordion").accordion();
+      });
+    </script>
+</body>
+</html>
