@@ -1,97 +1,1321 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王奕諠 (Yi-Xuan Wang) | 個人簡歷</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        :root { --primary-color: #2c3e50; --accent-color: #3498db; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
-        .hero { background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); color: white; padding: 60px 0; }
-        .section-title { border-left: 5px solid var(--accent-color); padding-left: 15px; margin-bottom: 30px; font-weight: bold; }
-        .project-card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s; }
-        .project-card:hover { transform: translateY(-5px); }
-        .badge-skill { background-color: #e9ecef; color: #495057; margin-right: 5px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hung-Te Chuang | AI Research Portfolio</title>
+  <meta name="description" content="Personal research portfolio for AI, Machine Learning, Intelligent Systems, and Computer Vision." />
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #11182e;
+      --card: rgba(255, 255, 255, 0.075);
+      --card-strong: rgba(255, 255, 255, 0.12);
+      --text: #f7f8ff;
+      --muted: #b6bed7;
+      --line: rgba(255, 255, 255, 0.14);
+      --brand: #7c5cff;
+      --brand-2: #20d6b5;
+      --brand-3: #ffcf5a;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+      --radius: 24px;
+    }
+
+    [data-theme="light"] {
+      --bg: #f6f8ff;
+      --bg-soft: #ffffff;
+      --card: rgba(255, 255, 255, 0.9);
+      --card-strong: rgba(255, 255, 255, 1);
+      --text: #111827;
+      --muted: #5b6477;
+      --line: rgba(17, 24, 39, 0.12);
+      --shadow: 0 20px 70px rgba(34, 50, 84, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 5%, rgba(124, 92, 255, 0.32), transparent 30%),
+        radial-gradient(circle at 90% 15%, rgba(32, 214, 181, 0.22), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(255, 207, 90, 0.12), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.18;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.35'/%3E%3C/svg%3E");
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+      width: min(1120px, calc(100% - 40px));
+      margin: 16px auto 0;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      background: rgba(11, 16, 32, 0.72);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    [data-theme="light"] .nav {
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white;
+      box-shadow: 0 12px 30px rgba(124, 92, 255, 0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .theme-btn {
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      transform: translateY(-2px);
+      background: var(--card-strong);
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 56px;
+      padding: 82px 0 52px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 22px;
+    }
+
+    .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--brand-2);
+      box-shadow: 0 0 0 0 rgba(32, 214, 181, 0.85);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(32, 214, 181, 0.7); }
+      70% { box-shadow: 0 0 0 12px rgba(32, 214, 181, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(32, 214, 181, 0); }
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 6vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff, #b8a7ff 45%, #42f0cf 85%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    [data-theme="light"] .gradient-text {
+      background: linear-gradient(135deg, #111827, #6747ff 45%, #0d9e85 85%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+      max-width: 680px;
+      margin-bottom: 30px;
+    }
+
+    .typing {
+      color: var(--brand-2);
+      font-weight: 800;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      border: 0;
+      color: white;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 18px 40px rgba(124, 92, 255, 0.32);
+    }
+
+    .btn-ghost {
+      background: var(--card);
+      color: var(--text);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 620px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      padding: 16px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .profile-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background: linear-gradient(180deg, var(--card-strong), var(--card));
+      box-shadow: var(--shadow);
+      padding: 28px;
+      overflow: hidden;
+      transform: rotate(1.2deg);
+      animation: float 5.4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(1.2deg); }
+      50% { transform: translateY(-12px) rotate(-0.6deg); }
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -70px;
+      top: -70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(32, 214, 181, 0.35), transparent 65%);
+    }
+
+    .avatar {
+      width: 112px;
+      height: 112px;
+      border-radius: 30px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin-bottom: 22px;
+      box-shadow: 0 22px 50px rgba(32, 214, 181, 0.18);
+    }
+
+    .avatar-img {
+      width: 128px;
+      height: 128px;
+      border-radius: 30px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 22px;
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 22px 50px rgba(32, 214, 181, 0.18);
+    }
+
+    .profile-card h2 {
+      font-size: 1.65rem;
+      margin-bottom: 6px;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .tag {
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .mini-timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: var(--card-strong);
+      border: 1px solid var(--line);
+    }
+
+    .mini-item strong {
+      display: block;
+      font-size: 0.96rem;
+    }
+
+    .mini-item span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .section-kicker {
+      color: var(--brand-2);
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .section-desc {
+      max-width: 520px;
+      color: var(--muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: 24px;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: var(--card-strong);
+      border-color: rgba(124, 92, 255, 0.42);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.25), rgba(32, 214, 181, 0.18));
+      border: 1px solid var(--line);
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+
+    .card h4 {
+      font-size: 1.12rem;
+      margin-bottom: 9px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .about-highlight {
+      min-height: 100%;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.22), rgba(32, 214, 181, 0.14));
+    }
+
+    .about-highlight .big-number {
+      font-size: clamp(4rem, 9vw, 7.2rem);
+      line-height: 0.9;
+      font-weight: 950;
+      letter-spacing: -0.08em;
+      margin: 10px 0 20px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .timeline-item time {
+      color: var(--brand-3);
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .project-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--muted);
+      padding: 9px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      color: white;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      border-color: transparent;
+    }
+
+    .search {
+      min-width: 240px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 15px;
+      outline: none;
+    }
+
+    .project-card {
+      position: relative;
+      min-height: 278px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 0%, rgba(124, 92, 255, 0.18), transparent 36%);
+      pointer-events: none;
+    }
+
+    .project-top {
+      position: relative;
+    }
+
+    .project-label {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(32, 214, 181, 0.13);
+      color: var(--brand-2);
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .project-links {
+      position: relative;
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .small-link {
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .small-link:hover {
+      color: var(--text);
+      background: var(--card-strong);
+    }
+
+    .skills-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .skill-row {
+      margin: 18px 0;
+    }
+
+    .skill-row header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      width: var(--w);
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      transform-origin: left;
+      animation: grow 1.2s ease both;
+    }
+
+    @keyframes grow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    .publication {
+      display: grid;
+      gap: 14px;
+    }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+    }
+
+    .pub-index {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.28), rgba(32, 214, 181, 0.16));
+      font-weight: 900;
+    }
+
+    .pub-item p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-top: 3px;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: center;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(124, 92, 255, 0.24), rgba(32, 214, 181, 0.13)),
+        var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      margin: 12px 0 24px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.055);
+      padding: 14px 16px;
+    }
+
+    .copy-btn {
+      border: 0;
+      border-radius: 999px;
+      background: var(--card-strong);
+      color: var(--text);
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    footer {
+      color: var(--muted);
+      padding: 30px 0 46px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        border-radius: 24px;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .about-wrap,
+      .skills-wrap,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        transform: none;
+        animation: none;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container,
+      .nav {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-desc {
+        margin-top: 12px;
+      }
+
+      .timeline-item,
+      .pub-item {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="noise"></div>
 
-<header class="hero text-center">
-    <div class="container">
-        <h1>王奕諠 (Yi-Xuan Wang)</h1>
-        <p class="lead">長庚大學 資工系 | 研究興趣：AI、Computer Vision、Smart Manufacturing</p>
-        <div class="mt-3">
-            <a href="mailto:nicole888ya@gmail.com" class="text-white me-3">Email</a>
-            <a href="https://github.com/yixuan1010" class="text-white">GitHub</a>
-        </div>
+  <nav class="nav">
+    <a href="#top" class="logo" aria-label="回到首頁">
+      <span class="logo-mark">H</span>
+      <span>Hung-Te Chuang</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
     </div>
-</header>
 
-<main class="container my-5">
-    <section class="mb-5">
-        <h2 class="section-title">學歷背景 (Education)</h2>
-        <div class="d-flex justify-content-between">
+    <button class="theme-btn" id="themeBtn" aria-label="切換深色與淺色模式">☾</button>
+  </nav>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="pulse"></span> Open to research collaboration & graduate opportunities</div>
+        <h1>
+          AI Researcher<br />
+          for <span class="gradient-text">Intelligent Systems</span>
+        </h1>
+        <p class="hero-subtitle">
+          Hi, I am <strong>Hung-Te Chuang</strong>, a graduate student in Computer Science.
+          My research interests include <span class="typing" id="typingText">Machine Learning</span>, Computer Vision,
+          Spatio-Temporal Data, and AI-driven intelligent systems.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects →</a>
+          <a class="btn btn-ghost" href="mailto:your.email@example.com">Contact Me</a>
+          <a class="btn btn-ghost" href="./cv.pdf" target="_blank" rel="noreferrer">Download CV</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>AI / ML</strong>
+            <span>Primary Research Area</span>
+          </div>
+          <div class="stat">
+            <strong>CV</strong>
+            <span>Deep Learning & Vision</span>
+          </div>
+          <div class="stat">
+            <strong>IoT</strong>
+            <span>Intelligent Applications</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile-card reveal" aria-label="個人簡介卡片">
+        <img class="avatar-img" src="./images/profile.jpg" alt="Hung-Te Chuang profile photo" />
+        <h2>莊泓德 Hung-Te Chuang</h2>
+        <p>Graduate Student · Computer Science · AI & Intelligent Systems</p>
+
+        <div class="tag-grid">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Model Compression</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Spatio-Temporal Data</span>
+          <span class="tag">Smart IoT</span>
+        </div>
+
+        <div class="mini-timeline">
+          <div class="mini-item">
+            <span class="dot">🎓</span>
             <div>
-                <h4>長庚大學 資訊工程學系</h4>
-                <p>Bachelor of Science in CSIE (2021 - 2025)</p>
+              <strong>M.S. in Computer Science</strong>
+              <span>National Dong Hwa University</span>
             </div>
-            <div class="text-end">
-                <p class="mb-0"><strong>GPA: 3.73 / 4.3</strong></p>
-                <p>系排名: 18 / 62</p>
+          </div>
+          <div class="mini-item">
+            <span class="dot">🧠</span>
+            <div>
+              <strong>Research Focus</strong>
+              <span>AI, intelligent systems, data-driven decision making</span>
             </div>
+          </div>
+          <div class="mini-item">
+            <span class="dot">🚀</span>
+            <div>
+              <strong>Current Goal</strong>
+              <span>Seeking research opportunities and collaboration</span>
+            </div>
+          </div>
         </div>
+      </aside>
     </section>
 
-    <section class="mb-5">
-        <h2 class="section-title">精選專題 (Selected Projects)</h2>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 project-card">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary">3D 智助餐系統 (Intelligent Cafeteria)</h5>
-                        <p class="card-text">負責 <strong>Unet 語意分割模型</strong>建置，達成 26 樣食物辨識，模型訓練 <strong>mIoU 高達 97.22%</strong>。獲得大專院校資訊應用服務創新競賽第二名。</p>
-                        <a href="https://www.youtube.com/watch?v=XC_eZ4czPWs" target="_blank" class="btn btn-outline-primary btn-sm">專題 Demo 影片</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 project-card">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary">GAN 影像去識別化 (實習專案)</h5>
-                        <p class="card-text">於<strong>國家衛生研究院</strong>實習。使用生成對抗網路與 ComfyUI 技術，處理跌倒影片資料集之個人隱私去識別化問題。</p>
-                        <span class="badge badge-skill">PyTorch</span> <span class="badge badge-skill">ComfyUI</span>
-                    </div>
-                </div>
-            </div>
+    <section id="about" class="reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">About Me</div>
+          <h3>Building practical AI systems with research depth.</h3>
         </div>
+        <p class="section-desc">
+          這裡可以放你的研究背景、自我介紹、申請教授實驗室的動機，讓教授或面試者快速理解你的方向。
+        </p>
+      </div>
+
+      <div class="about-wrap">
+        <div class="card about-highlight">
+          <p class="section-kicker">Research Identity</p>
+          <div class="big-number">AI</div>
+          <h4>從模型設計到系統應用</h4>
+          <p>
+            I am interested in developing machine learning models that can be deployed in real-world intelligent systems,
+            especially for perception, decision support, and data-driven optimization.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <time>2024 - Present</time>
+            <div>
+              <strong>Graduate Research in Computer Science</strong>
+              <p>Focused on AI, machine learning, intelligent systems, and applied deep learning research.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <time>Research</time>
+            <div>
+              <strong>AI-driven Intelligent Applications</strong>
+              <p>Experience with deep learning pipelines, temporal modeling, computer vision, and model evaluation.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <time>Goal</time>
+            <div>
+              <strong>Join a Research-oriented Laboratory</strong>
+              <p>Looking forward to contributing to AI and Intelligent Systems research through rigorous experiments and implementation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="mb-5">
-        <div class="row">
-            <div class="col-md-7">
-                <h2 class="section-title">榮獲獎項 (Awards)</h2>
-                <ul>
-                    <li>第 28 屆大專院校資訊應用服務創新競賽 - <strong>第二名</strong></li>
-                    <li>2024 智慧晶片系統應用創新專題實作競賽 - 佳作</li>
-                    <li>2024 中華電信 5G 創新應用大賽 - 最佳創意獎</li>
-                </ul>
-            </div>
-            <div class="col-md-5">
-                <h2 class="section-title">專業技能 (Skills)</h2>
-                <p>
-                    <strong>Languages:</strong> C/C++, Python, Verilog, SQL<br>
-                    <strong>AI/Tools:</strong> PyTorch, OpenCV, Git, Docker, MySQL<br>
-                    <strong>Experience:</strong> IoT (Arduino), Parallel Programming
-                </p>
-            </div>
+    <section id="research" class="reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Research Interests</div>
+          <h3>Topics I want to explore deeply.</h3>
         </div>
+        <p class="section-desc">
+          可以依照教授實驗室方向調整，讓你的 GitHub 首頁和申請信內容一致。
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon">🧠</div>
+          <h4>Artificial Intelligence & Machine Learning</h4>
+          <p>Model design, classification, prediction, optimization, and data-driven intelligent decision support.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🧩</div>
+          <h4>Feature Selection & Model Compression</h4>
+          <p>Efficient models for practical deployment, including lightweight inference and resource-aware AI systems.</p>
+        </article>
+        <article class="card">
+          <div class="icon">⏱️</div>
+          <h4>Spatio-Temporal Data Analysis</h4>
+          <p>Learning from data with time and location patterns, such as mobility, traffic, IoT, and dynamic environments.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🏭</div>
+          <h4>Smart Manufacturing & IoT</h4>
+          <p>Applying AI to industrial sensing, intelligent monitoring, automation, and real-time system analysis.</p>
+        </article>
+        <article class="card">
+          <div class="icon">👁️</div>
+          <h4>Computer Vision</h4>
+          <p>Deep learning for image/video understanding, skeleton-based analysis, and visual behavior recognition.</p>
+        </article>
+        <article class="card">
+          <div class="icon">📊</div>
+          <h4>Databases & Data Mining</h4>
+          <p>Extracting useful knowledge from structured and unstructured data through analytical pipelines.</p>
+        </article>
+      </div>
     </section>
-</main>
 
-<footer class="bg-light py-4 text-center">
-    <p class="text-muted">&copy; 2026 Yi-Xuan Wang. Built with Bootstrap.</p>
-</footer>
+    <section id="projects" class="reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Selected Projects</div>
+          <h3>Work that shows my research ability.</h3>
+        </div>
+        <p class="section-desc">
+          建議放 3–6 個最能代表你的專案，不要全部放。每個專案要能看出問題、方法、結果。
+        </p>
+      </div>
 
+      <div class="project-toolbar">
+        <div class="filters" aria-label="專案分類篩選">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ai">AI</button>
+          <button class="filter-btn" data-filter="vision">Vision</button>
+          <button class="filter-btn" data-filter="system">System</button>
+        </div>
+        <input class="search" id="projectSearch" type="search" placeholder="Search projects..." />
+      </div>
+
+      <div class="grid-3" id="projectGrid">
+        <article class="card project-card" data-category="ai system" data-title="AI-driven Resource Scheduling">
+          <div class="project-top">
+            <span class="project-label">AI · Intelligent Systems</span>
+            <h4>AI-driven Resource Scheduling</h4>
+            <p>Designed a dynamic scheduling framework using machine learning to improve service satisfaction and resource efficiency.</p>
+          </div>
+          <div class="project-links">
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">Report</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="vision ai" data-title="Skeleton-based Behavior Recognition">
+          <div class="project-top">
+            <span class="project-label">Vision · Deep Learning</span>
+            <h4>Skeleton-based Behavior Recognition</h4>
+            <p>Built a video analysis pipeline using MediaPipe skeletons and temporal deep learning models for behavior classification.</p>
+          </div>
+          <div class="project-links">
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">Demo</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="vision ai" data-title="Medical Landmark Prediction">
+          <div class="project-top">
+            <span class="project-label">Medical AI</span>
+            <h4>Medical Landmark Prediction</h4>
+            <p>Explored landmark prediction and structure-aware representation learning for ultrasound image analysis.</p>
+          </div>
+          <div class="project-links">
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">Paper</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="system" data-title="Full-stack Translation Platform">
+          <div class="project-top">
+            <span class="project-label">Web · System</span>
+            <h4>Full-stack Translation Platform</h4>
+            <p>Implemented a PHP-based front-end/back-end separated translation platform with user management and result history.</p>
+          </div>
+          <div class="project-links">
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">Docs</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="ai" data-title="Model Evaluation and Threshold Search">
+          <div class="project-top">
+            <span class="project-label">ML · Evaluation</span>
+            <h4>Model Evaluation & Threshold Search</h4>
+            <p>Developed evaluation scripts for precision, recall, F1-score, AUC, PR curves, and threshold optimization.</p>
+          </div>
+          <div class="project-links">
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">Notes</a>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="system" data-title="IoT and Smart Application Prototype">
+          <div class="project-top">
+            <span class="project-label">IoT · Prototype</span>
+            <h4>IoT Smart Application Prototype</h4>
+            <p>Designed a prototype concept integrating edge computing, cloud database, and real-time intelligent data processing.</p>
+          </div>
+          <div class="project-links">
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="small-link" href="#" target="_blank" rel="noreferrer">Demo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Skills</div>
+          <h3>Research + engineering stack.</h3>
+        </div>
+        <p class="section-desc">
+          這裡建議放教授會在意的能力：程式、ML框架、實驗設計、資料分析、系統實作。
+        </p>
+      </div>
+
+      <div class="skills-wrap">
+        <div class="card">
+          <h4>Technical Skills</h4>
+          <div class="skill-row">
+            <header><span>Python / PyTorch</span><span>90%</span></header>
+            <div class="bar"><span style="--w: 90%"></span></div>
+          </div>
+          <div class="skill-row">
+            <header><span>Machine Learning</span><span>86%</span></header>
+            <div class="bar"><span style="--w: 86%"></span></div>
+          </div>
+          <div class="skill-row">
+            <header><span>Data Analysis</span><span>84%</span></header>
+            <div class="bar"><span style="--w: 84%"></span></div>
+          </div>
+          <div class="skill-row">
+            <header><span>Web / System Development</span><span>78%</span></header>
+            <div class="bar"><span style="--w: 78%"></span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Tools & Methods</h4>
+          <div class="tag-grid">
+            <span class="tag">Python</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">MediaPipe</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">SQL</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Git</span>
+            <span class="tag">Docker</span>
+          </div>
+          <p>
+            I care about reproducible experiments, readable implementation, careful evaluation, and clear research communication.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="reveal">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Publications / Notes</div>
+          <h3>Research outputs and writing.</h3>
+        </div>
+        <p class="section-desc">
+          如果還沒有正式論文，可以先放 thesis draft、technical report、course project report 或 GitHub notes。
+        </p>
+      </div>
+
+      <div class="publication">
+        <article class="pub-item">
+          <div class="pub-index">01</div>
+          <div>
+            <strong>AI-driven Dynamic Resource Scheduling for Intelligent Communication Systems</strong>
+            <p>Thesis draft / technical report. Replace this with your real paper title.</p>
+          </div>
+          <a class="small-link" href="#">PDF</a>
+        </article>
+        <article class="pub-item">
+          <div class="pub-index">02</div>
+          <div>
+            <strong>Skeleton-based Temporal Modeling for Repetitive Behavior Recognition</strong>
+            <p>Research note / experiment summary. Replace this with your real report title.</p>
+          </div>
+          <a class="small-link" href="#">PDF</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <div class="contact-card">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h3>Let’s discuss research opportunities.</h3>
+          <p>
+            I am open to research discussions, graduate opportunities, and AI-related collaboration.
+            Please feel free to contact me by email.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:your.email@example.com">Send Email</a>
+            <a class="btn btn-ghost" href="https://github.com/your-github-id" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <div class="contact-list">
+          <div class="contact-row">
+            <span>Email</span>
+            <button class="copy-btn" data-copy="your.email@example.com">Copy</button>
+          </div>
+          <div class="contact-row">
+            <span>GitHub</span>
+            <a class="copy-btn" href="https://github.com/your-github-id" target="_blank" rel="noreferrer">Open</a>
+          </div>
+          <div class="contact-row">
+            <span>Location</span>
+            <span>Taiwan</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Hung-Te Chuang. Built with HTML, CSS, and JavaScript.
+    </div>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const themeBtn = document.getElementById("themeBtn");
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "light") {
+      root.setAttribute("data-theme", "light");
+      themeBtn.textContent = "☀";
+    }
+
+    themeBtn.addEventListener("click", () => {
+      const isLight = root.getAttribute("data-theme") === "light";
+      if (isLight) {
+        root.removeAttribute("data-theme");
+        localStorage.setItem("theme", "dark");
+        themeBtn.textContent = "☾";
+      } else {
+        root.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+        themeBtn.textContent = "☀";
+      }
+    });
+
+    const words = [
+      "Machine Learning",
+      "Computer Vision",
+      "Model Compression",
+      "Spatio-Temporal Data",
+      "Smart IoT",
+      "Intelligent Systems"
+    ];
+    const typingText = document.getElementById("typingText");
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeLoop() {
+      const current = words[wordIndex];
+      if (!deleting) {
+        typingText.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1200);
+          return;
+        }
+      } else {
+        typingText.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+      setTimeout(typeLoop, deleting ? 42 : 76);
+    }
+    typeLoop();
+
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.15 });
+    revealElements.forEach(el => observer.observe(el));
+
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+    const projectSearch = document.getElementById("projectSearch");
+    let activeFilter = "all";
+
+    function applyProjectFilter() {
+      const keyword = projectSearch.value.trim().toLowerCase();
+      projectCards.forEach(card => {
+        const categories = card.dataset.category;
+        const title = card.dataset.title.toLowerCase();
+        const text = card.textContent.toLowerCase();
+        const matchFilter = activeFilter === "all" || categories.includes(activeFilter);
+        const matchSearch = !keyword || title.includes(keyword) || text.includes(keyword);
+        card.style.display = matchFilter && matchSearch ? "flex" : "none";
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.dataset.filter;
+        applyProjectFilter();
+      });
+    });
+
+    projectSearch.addEventListener("input", applyProjectFilter);
+
+    document.querySelectorAll("[data-copy]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          const oldText = btn.textContent;
+          btn.textContent = "Copied";
+          setTimeout(() => btn.textContent = oldText, 1000);
+        } catch (error) {
+          alert("Copy failed. Please copy manually.");
+        }
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
