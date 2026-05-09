@@ -31,7 +31,7 @@
     }
 
     .container {
-      width: min(1000px, calc(100% - 32px));
+      width: min(1080px, calc(100% - 32px));
       margin: 0 auto;
     }
 
@@ -39,7 +39,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(246, 246, 243, 0.9);
+      background: rgba(246, 246, 243, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid #e3e0d8;
     }
@@ -166,20 +166,6 @@
       gap: 18px;
     }
 
-    /* 新增：獎項展示布局 */
-    .award-display {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .award-img-wrapper img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    }
-
     .info-list {
       display: grid;
       gap: 12px;
@@ -277,33 +263,113 @@
       font-size: 0.92rem;
     }
 
+    /* =========================
+       照片重新排版：通用設定
+    ========================= */
+
+    .photo-frame {
+      width: 100%;
+      background: #faf9f5;
+      border: 1px solid #e4e1da;
+      border-radius: 18px;
+      padding: 10px;
+      overflow: visible;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .photo-caption {
+      margin-top: 10px;
+      color: #777;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    
+
+    .award-showcase {
+      display: grid;
+      grid-template-columns: 1.45fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .award-content {
+      display: grid;
+      gap: 18px;
+    }
+
+    .award-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: #222;
+      color: white;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .award-content h3 {
+      font-size: 1.45rem;
+      line-height: 1.35;
+    }
+
+    .award-content p {
+      color: #555;
+    }
+
+    .award-list {
+      padding-left: 22px;
+    }
+
+    .award-list li {
+      margin-bottom: 14px;
+    }
+
+    /* =========================
+       Projects 區塊重新排版
+    ========================= */
+
+    .featured-project {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .featured-project h3 {
+      font-size: 1.55rem;
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .featured-project p {
+      color: #555;
+      margin-bottom: 14px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
     .project-card {
       display: grid;
       gap: 12px;
     }
 
-    /* 新增：專題圖片樣式 */
-    .project-img-wrapper {
-      width: 100%;
-      overflow: hidden;
-      border-radius: 12px;
-      margin-bottom: 4px;
-      background: #f9f9f9;
-    }
-
-    .project-img-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .project-card:hover .project-img-wrapper img {
-      transform: scale(1.03);
-    }
-
     .project-card h3 {
-      font-size: 1.22rem;
+      font-size: 1.14rem;
     }
 
     .project-meta {
@@ -318,14 +384,6 @@
       padding: 5px 10px;
       border-radius: 999px;
       background: #f0eee8;
-    }
-
-    .award-list {
-      padding-left: 22px;
-    }
-
-    .award-list li {
-      margin-bottom: 16px;
     }
 
     .contact {
@@ -355,6 +413,17 @@
       border-top: 1px solid #e3e0d8;
     }
 
+    @media (max-width: 900px) {
+      .award-showcase,
+      .featured-project {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 760px) {
       .nav-links {
         display: none;
@@ -375,8 +444,7 @@
       }
 
       .grid-2,
-      .course-grid,
-      .award-display {
+      .course-grid {
         grid-template-columns: 1fr;
       }
 
@@ -393,6 +461,14 @@
         display: block;
         text-align: left;
         margin-top: 4px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .photo-frame {
+        padding: 8px;
       }
     }
   </style>
@@ -495,22 +571,41 @@
       </div>
     </section>
 
-   
     <section id="awards">
-        <h2 class="section-title">Awards</h2>
-        <div class="card award-display">
-          <div>
-            <ul class="award-list">
-              <li><strong>第 28 屆大專院校資訊應用服務創新競賽</strong><br>
-                <span style="font-size: 0.92rem; color: #666;">亞洲・矽谷 2.0 智慧物聯網創新組｜第二名</span></li>
-              <li><strong>2024 智慧晶片系統應用創新專題實作競賽</strong>｜佳作</li>
-              <li><strong>2024 中華電信 5G 創新應用大賽</strong>｜最佳創意獎</li>
-            </ul>
+      <h2 class="section-title">Awards</h2>
+
+      <div class="card award-showcase">
+        <div>
+          <div class="photo-frame">
+            <img src="./images/award_innoserve.jpg" alt="第 28 屆 InnoServe 資訊應用服務創新競賽領獎照片" />
           </div>
-          <div class="award-img-wrapper">
-            <img src="./images/award_innoserve.jpg" alt="InnoServe 競賽領獎合照">
-          </div>
+          <p class="photo-caption">第 28 屆大專校院資訊應用服務創新競賽領獎照片</p>
         </div>
+
+        <div class="award-content">
+          <span class="award-badge">Award Highlight</span>
+          <h3>以 3D 智助餐系統獲得資訊應用服務創新競賽肯定</h3>
+          <p>
+            畢業專題結合深度攝影機、邊緣運算與影像辨識技術，將智慧物聯網應用於自助餐場景，
+            協助使用者辨識餐點種類、估算份量與營養資訊。
+          </p>
+
+          <ul class="award-list">
+            <li>
+              <strong>第 28 屆大專院校資訊應用服務創新競賽</strong><br />
+              <span style="font-size: 0.92rem; color: #666;">亞洲・矽谷 2.0 智慧物聯網創新組｜第二名</span>
+            </li>
+            <li>
+              <strong>2024 智慧晶片系統應用創新專題實作競賽</strong><br />
+              <span style="font-size: 0.92rem; color: #666;">佳作</span>
+            </li>
+            <li>
+              <strong>2024 中華電信 5G 創新應用大賽</strong><br />
+              <span style="font-size: 0.92rem; color: #666;">最佳創意獎</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section id="courses">
@@ -552,26 +647,34 @@
       </div>
     </section>
 
-    
     <section id="projects">
       <h2 class="section-title">Projects</h2>
-      <div class="grid-2">
-        <div class="card project-card">
-          <div class="project-img-wrapper">
-            <img src="./images/project_3d_cafeteria.jpg" alt="3D 智助餐系統作品照片">
+
+      <div class="card featured-project">
+        <div>
+          <div class="photo-frame">
+            <img src="./images/project_3d_cafeteria.jpg" alt="3D 智助餐系統實體作品照片" />
           </div>
+          <p class="photo-caption">3D 智助餐系統實體作品展示</p>
+        </div>
+
+        <div>
           <h3>畢業專題《3D 智助餐系統》</h3>
           <p>
-            整合 3D 食物辨識、邊緣運算與雲端資料庫。使用深度攝影機擷取資訊，可即時判別食物種類與份量，並估算營養成分。
+            本專題結合 3D 食物辨識、邊緣運算與雲端資料庫。系統透過 Intel RealSense L515 深度攝影機擷取餐點資訊，
+            並於 Jetson Orin Nano 進行邊緣端推論，可即時判別食物種類與份量，進一步估算剩餘食物與營養成分。
           </p>
           <div class="project-meta">
             <span>Jetson Orin Nano</span>
-            <span>RealSense L515</span>
+            <span>Intel RealSense L515</span>
             <span>U-Net</span>
+            <span>Cloud Database</span>
             <span>mIoU 97.22%</span>
           </div>
         </div>
+      </div>
 
+      <div class="project-grid">
         <div class="card project-card">
           <h3>實習專案《去個人化隱私資訊跌倒影片》</h3>
           <p>
