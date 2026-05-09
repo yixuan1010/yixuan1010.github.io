@@ -166,6 +166,20 @@
       gap: 18px;
     }
 
+    /* 新增：獎項展示布局 */
+    .award-display {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .award-img-wrapper img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
     .info-list {
       display: grid;
       gap: 12px;
@@ -268,6 +282,26 @@
       gap: 12px;
     }
 
+    /* 新增：專題圖片樣式 */
+    .project-img-wrapper {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 4px;
+      background: #f9f9f9;
+    }
+
+    .project-img-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-img-wrapper img {
+      transform: scale(1.03);
+    }
+
     .project-card h3 {
       font-size: 1.22rem;
     }
@@ -291,7 +325,7 @@
     }
 
     .award-list li {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
 
     .contact {
@@ -341,7 +375,8 @@
       }
 
       .grid-2,
-      .course-grid {
+      .course-grid,
+      .award-display {
         grid-template-columns: 1fr;
       }
 
@@ -390,7 +425,6 @@
         </p>
         <div class="button-group">
           <a class="btn primary" href="mailto:nicole888ya@gmail.com">Email Me</a>
-          <!-- <a class="btn" href="./cv.pdf" target="_blank" rel="noreferrer">Download CV</a> -->
           <a class="btn" href="https://github.com/yixuan1010" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </div>
@@ -422,15 +456,13 @@
             <span class="tag">C++</span>
             <span class="tag">Python</span>
             <span class="tag">Verilog</span>
-            <span class="tag">PHP</span>
-            <span class="tag">JavaScript</span>
             <span class="tag">React</span>
             <span class="tag">Node.js</span>
             <span class="tag">MySQL</span>
-            <span class="tag">Arduino IDE</span>
+            <span class="tag">Jetson Orin Nano</span>
             <span class="tag">U-Net</span>
+            <span class="tag">GAN</span>
             <span class="tag">ComfyUI</span>
-            <span class="tag">DiffSynth-Studio</span>
           </div>
         </div>
       </div>
@@ -462,27 +494,36 @@
         </div>
       </div>
     </section>
+
+    <!-- 更新後的 Awards 區塊：加入得獎照片 -->
     <section id="awards">
         <h2 class="section-title">Awards</h2>
-        <div class="card">
-          <ul class="award-list">
-            <li>第 28 屆大專院校資訊應用服務創新競賽｜亞洲・矽谷 2.0 智慧物聯網創新組｜第二名</li>
-            <li>2024 智慧晶片系統應用創新專題實作競賽｜佳作</li>
-            <li>2024 中華電信 5G 創新應用大賽｜最佳創意獎</li>
-          </ul>
+        <div class="card award-display">
+          <div>
+            <ul class="award-list">
+              <li><strong>第 28 屆大專院校資訊應用服務創新競賽</strong><br>
+                <span style="font-size: 0.92rem; color: #666;">亞洲・矽谷 2.0 智慧物聯網創新組｜第二名</span></li>
+              <li><strong>2024 智慧晶片系統應用創新專題實作競賽</strong>｜佳作</li>
+              <li><strong>2024 中華電信 5G 創新應用大賽</strong>｜最佳創意獎</li>
+            </ul>
+          </div>
+          <div class="award-img-wrapper">
+            <img src="面試簡報 (1).jpg" alt="InnoServe 競賽領獎合照">
+          </div>
         </div>
     </section>
+
     <section id="courses">
       <h2 class="section-title">Selected Courses</h2>
       <div class="course-grid">
         <div class="course"><strong>資料結構與演算法</strong><span>Sorting algorithms、時間複雜度、C++ 實作</span></div>
         <div class="course"><strong>計算機組織實驗</strong><span>使用 FPGA 進行電路設計實驗，Verilog</span></div>
-        <div class="course"><strong>資料庫系統設計</strong><span>Bar Hopper 專案，XAMPP / MySQL / PHP / JavaScript / jQuery</span></div>
+        <div class="course"><strong>資料庫系統設計</strong><span>Bar Hopper 專案，XAMPP / MySQL / PHP / JavaScript</span></div>
         <div class="course"><strong>網頁程式設計</strong><span>記帳本專案，Node.js / React / MySQL</span></div>
-        <div class="course"><strong>計算機網路</strong><span>Winsock2 網頁爬蟲，可離線讀取網站內容，C++</span></div>
+        <div class="course"><strong>計算機網路</strong><span>Winsock2 網頁爬蟲，C++</span></div>
         <div class="course"><strong>人工智慧</strong><span>黑白棋 AI 下棋程式，Python</span></div>
-        <div class="course"><strong>物聯網</strong><span>低耗能通訊、訊號傳輸、物聯網專案，Arduino IDE</span></div>
-        <div class="course"><strong>作業系統</strong><span>Linux、進程、檔案、記憶體管理、多進程編程</span></div>
+        <div class="course"><strong>物聯網</strong><span>低耗能通訊、訊號傳輸、Arduino IDE</span></div>
+        <div class="course"><strong>作業系統</strong><span>Linux、進程、記憶體管理、多進程編程</span></div>
       </div>
     </section>
 
@@ -511,27 +552,30 @@
       </div>
     </section>
 
+    <!-- 更新後的 Projects 區塊：加入專題圖 -->
     <section id="projects">
       <h2 class="section-title">Projects</h2>
       <div class="grid-2">
         <div class="card project-card">
+          <div class="project-img-wrapper">
+            <img src="面試簡報.jpg" alt="3D 智助餐系統架構圖">
+          </div>
           <h3>畢業專題《3D 智助餐系統》</h3>
           <p>
-            Intelligent Cafeteria with Edge Computer and Depth Camera。整合 3D 食物辨識、邊緣運算與雲端資料庫，
-            可即時判別食物種類與份量，並估算剩餘食物及營養成分。
+            整合 3D 食物辨識、邊緣運算與雲端資料庫。使用深度攝影機擷取資訊，可即時判別食物種類與份量，並估算營養成分。
           </p>
           <div class="project-meta">
+            <span>Jetson Orin Nano</span>
+            <span>RealSense L515</span>
             <span>U-Net</span>
-            <span>Semantic Segmentation</span>
-            <span>Edge Computing</span>
             <span>mIoU 97.22%</span>
           </div>
         </div>
 
         <div class="card project-card">
-          <h3>實習專案《去個人化隱私資訊跌倒影片資料集》</h3>
+          <h3>實習專案《去個人化隱私資訊跌倒影片》</h3>
           <p>
-            透過影像取得與前處理、背景置換與人體骨架偵測比對相似度，處理開源跌倒影片資料中的隱私去識別化問題。
+            透過影像處理、背景置換與人體骨架偵測，利用 GAN 處理開源跌倒影片資料中的隱私去識別化問題。
           </p>
           <div class="project-meta">
             <span>GAN</span>
@@ -544,7 +588,7 @@
         <div class="card project-card">
           <h3>Bar Hopper</h3>
           <p>
-            資料庫系統設計期末專案，協助使用者尋找酒吧、酒品及成分，使用 XAMPP、MySQL、PHP、JavaScript 與 jQuery 開發。
+            協助使用者尋找酒吧、酒品及成分之資料庫系統，使用 XAMPP、MySQL、PHP 與 JavaScript 開發。
           </p>
           <div class="project-meta">
             <span>MySQL</span>
@@ -557,7 +601,7 @@
         <div class="card project-card">
           <h3>記帳本系統</h3>
           <p>
-            網頁程式設計期末專案，以 Node.js、React 與 MySQL 製作記帳本系統，練習前後端與資料庫整合。
+            以 Node.js、React 與 MySQL 製作之記帳系統，練習前後端分離與資料庫整合開發。
           </p>
           <div class="project-meta">
             <span>Node.js</span>
@@ -568,14 +612,10 @@
       </div>
     </section>
 
-    
-
     <section id="contact">
       <div class="contact">
         <h2>Contact Me</h2>
-        <p>
-          歡迎透過 Email 與我聯繫，了解更多專題、實習與作品集內容。
-        </p>
+        <p>歡迎透過 Email 與我聯繫，了解更多專題內容與合作機會。</p>
         <div class="button-group" style="justify-content:center;">
           <a class="btn" href="mailto:nicole888ya@gmail.com">nicole888ya@gmail.com</a>
         </div>
