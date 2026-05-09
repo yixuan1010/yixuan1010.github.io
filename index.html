@@ -209,6 +209,29 @@
       font-size: 0.92rem;
     }
 
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .course {
+      background: #fff;
+      border: 1px solid #e4e1da;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .course strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .course span {
+      color: #666;
+      font-size: 0.92rem;
+    }
+
     .timeline {
       display: grid;
       gap: 14px;
@@ -240,31 +263,8 @@
       color: #555;
     }
 
-    .course-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .course {
-      background: #fff;
-      border: 1px solid #e4e1da;
-      border-radius: 16px;
-      padding: 16px;
-    }
-
-    .course strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .course span {
-      color: #666;
-      font-size: 0.92rem;
-    }
-
     /* =========================
-       照片重新排版：通用設定
+       通用照片樣式：完整顯示，不裁切
     ========================= */
 
     .photo-frame {
@@ -273,11 +273,16 @@
       border: 1px solid #e4e1da;
       border-radius: 18px;
       padding: 10px;
-      overflow: visible;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .photo-frame img {
-      width: 100%;
+      max-width: 100%;
+      max-height: 560px;
+      width: auto;
       height: auto;
       display: block;
       object-fit: contain;
@@ -292,11 +297,13 @@
       text-align: center;
     }
 
-    
+    /* =========================
+       Awards 區塊
+    ========================= */
 
     .award-showcase {
       display: grid;
-      grid-template-columns: 1.45fr 0.9fr;
+      grid-template-columns: 1.35fr 0.95fr;
       gap: 24px;
       align-items: center;
     }
@@ -335,55 +342,68 @@
     }
 
     /* =========================
-       Projects 區塊重新排版
+       Projects 區塊：不跑版版本
     ========================= */
 
     .featured-project {
-      display: grid;
-      grid-template-columns: 1.35fr 0.9fr;
-      gap: 24px;
-      align-items: center;
-      margin-bottom: 18px;
+      display: block;
+      margin-bottom: 24px;
     }
 
-    .featured-project h3 {
+    .featured-project-image {
+      margin-bottom: 24px;
+    }
+
+    .featured-project-content h3 {
       font-size: 1.55rem;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       line-height: 1.35;
     }
 
-    .featured-project p {
+    .featured-project-content p {
       color: #555;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .project-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
+      clear: both;
     }
 
     .project-card {
-      display: grid;
+      display: flex;
+      flex-direction: column;
       gap: 12px;
+      min-height: 100%;
     }
 
     .project-card h3 {
       font-size: 1.14rem;
+      line-height: 1.4;
+    }
+
+    .project-card p {
+      color: #555;
+      margin-bottom: 8px;
     }
 
     .project-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 4px;
+      margin-top: auto;
     }
 
     .project-meta span {
       font-size: 0.88rem;
-      padding: 5px 10px;
+      line-height: 1.4;
+      padding: 6px 11px;
       border-radius: 999px;
       background: #f0eee8;
+      color: #222;
+      white-space: nowrap;
     }
 
     .contact {
@@ -414,13 +434,16 @@
     }
 
     @media (max-width: 900px) {
-      .award-showcase,
-      .featured-project {
+      .award-showcase {
         grid-template-columns: 1fr;
       }
 
       .project-grid {
         grid-template-columns: 1fr;
+      }
+
+      .photo-frame img {
+        max-height: 460px;
       }
     }
 
@@ -469,6 +492,14 @@
 
       .photo-frame {
         padding: 8px;
+      }
+
+      .photo-frame img {
+        max-height: 360px;
+      }
+
+      .project-meta span {
+        white-space: normal;
       }
     }
   </style>
@@ -651,19 +682,20 @@
       <h2 class="section-title">Projects</h2>
 
       <div class="card featured-project">
-        <div>
+        <div class="featured-project-image">
           <div class="photo-frame">
             <img src="./images/project_3d_cafeteria.jpg" alt="3D 智助餐系統實體作品照片" />
           </div>
           <p class="photo-caption">3D 智助餐系統實體作品展示</p>
         </div>
 
-        <div>
+        <div class="featured-project-content">
           <h3>畢業專題《3D 智助餐系統》</h3>
           <p>
-            本專題結合 3D 食物辨識、邊緣運算與雲端資料庫。系統透過 Intel RealSense L515 深度攝影機擷取餐點資訊，
+            本專題整合 3D 食物辨識、邊緣運算與雲端資料庫。系統透過 Intel RealSense L515 深度攝影機擷取餐點資訊，
             並於 Jetson Orin Nano 進行邊緣端推論，可即時判別食物種類與份量，進一步估算剩餘食物與營養成分。
           </p>
+
           <div class="project-meta">
             <span>Jetson Orin Nano</span>
             <span>Intel RealSense L515</span>
